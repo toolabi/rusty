@@ -20,6 +20,8 @@ fn main() {
     println!("binary {:?}",num );
     let num :u8 = b'A' ;//byte
     println!("byte {:?}",num );
+    let num :f32 = 2.3 ;//float
+    println!("float {:?}",num );
 
 
 }
