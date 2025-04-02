@@ -23,5 +23,31 @@ fn main() {
     let num :f32 = 2.3 ;//float
     println!("float {:?}",num );
 
+    // coumpound
+    // tuples() => fixed size array with different type data
+    let tup = ("rusty", 101);
+    let (a, b) = tup;
+    println!("tuple first {:?}",a );
+    println!("tuple second {:?}",tup.1 );
+    // arrays[] => fixed size array with same type data
+    let arr = [1,2,3];
+    let first = arr[1];
+
+    let arr = [0;32];
+
+
+    // control flow(if, loop, while, for loop)
+    loop{
+        println!("prints untils break");
+        break;
+    }
+    
+
+
+
+
+
+    
+
 
 }
