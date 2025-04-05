@@ -37,6 +37,8 @@ fn main() {
         println!("s: {:?}", s);
 
     }
+
+    {
             
         let s = String::from("99");
         let function_call = pr(s);
@@ -62,10 +64,23 @@ fn main() {
             println!("{:?}", x);
         }
 
-    {
-
-
     }
+    {
+        // mutable refrence
+        // change the variable without taking ownership
+        let mut s = String::from("hello");
+         change(&mut s);
+         println!("{:?}", s);
+
+
+        fn change(s: &mut String){
+            s.push_str(", world.")
+
+        }
+    }
+
+
+
     // passing a varibale to a function is the same as assign it to a new variable
 
 }
