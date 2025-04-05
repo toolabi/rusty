@@ -68,15 +68,26 @@ fn main() {
     {
         // mutable refrence
         // change the variable without taking ownership
+        // important:
+        // we can only have one mut refrence to a variable
         let mut s = String::from("hello");
+        let r1 = &mut s;
+        // let r2 = &mut s;
+        println!("r1 {:?}", r1);
+        // 75 |         let r2 = &mut s;
+        //    |                  ^^^^^^ second mutable borrow occurs here
+
          change(&mut s);
          println!("{:?}", s);
-
-
         fn change(s: &mut String){
             s.push_str(", world.")
 
         }
+
+
+        // refrense rules
+        // 1. in any scope you can have one mut ref to a varible or unlimited imm refernces
+        // ref must be valid
     }
 
 
