@@ -9,8 +9,7 @@ fn main() {
     {
         let s = String::from("99");
         let newOwner = s;
-    
-    
+
         // println!("{:?}", s);
         // throws error
         // |
@@ -22,11 +21,10 @@ fn main() {
         // 12 |     println!("{:?}", s);
         //    |                      ^ value borrowed here after move
         //    |
-        
+
         let s = String::from("99");
         let newOwner = s.clone();
         println!("s: {:?}", s);
-
     }
 
     {
@@ -35,11 +33,9 @@ fn main() {
         // no need to clone
         let newOwner = s;
         println!("s: {:?}", s);
-
     }
 
     {
-            
         let s = String::from("99");
         let function_call = pr(s);
         // raises error since s is moved
@@ -49,7 +45,7 @@ fn main() {
         let function_call = pr(s.clone());
         println!("s: {:?}", s);
 
-        fn pr(x: String){
+        fn pr(x: String) {
             println!("{:?}", x);
         }
 
@@ -60,10 +56,9 @@ fn main() {
         let function_call = refr_pr(&s);
         println!("s: {:?}", s);
 
-        fn refr_pr(x: &String){
+        fn refr_pr(x: &String) {
             println!("{:?}", x);
         }
-
     }
     {
         // mutable refrence
@@ -77,25 +72,19 @@ fn main() {
         // 75 |         let r2 = &mut s;
         //    |                  ^^^^^^ second mutable borrow occurs here
 
-         change(&mut s);
-         println!("{:?}", s);
-        fn change(s: &mut String){
+        change(&mut s);
+        println!("{:?}", s);
+        fn change(s: &mut String) {
             s.push_str(", world.")
-
         }
-
 
         // refrense rules
         // 1. in any scope you can have one mut ref to a varible or unlimited imm refernces
         // ref must be valid
     }
 
-
-
     // passing a varibale to a function is the same as assign it to a new variable
     // any function which creates a new string that did not previously exist must return String rather than &str
     // The String type is for variables with a string that can mutate, grow and shrink.
     // str is a string slice, so &str is a reference to a string slice.
-
-
 }
