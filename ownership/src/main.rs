@@ -93,5 +93,9 @@ fn main() {
 
 
     // passing a varibale to a function is the same as assign it to a new variable
+    // any function which creates a new string that did not previously exist must return String rather than &str
+    // The String type is for variables with a string that can mutate, grow and shrink.
+    // str is a string slice, so &str is a reference to a string slice.
+
 
 }
