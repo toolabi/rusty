@@ -29,4 +29,10 @@ fn main() {
 
     println!("s: {:?}", s);
 
+    // if the varibale type implements the trait "copy", assiging the varibale to a new one does not destroy the old one
+    let s: u8 = 32;
+    // no need to clone
+    let newOwner = s;
+    println!("s: {:?}", s);
+
 }
