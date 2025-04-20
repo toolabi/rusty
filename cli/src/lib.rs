@@ -27,14 +27,25 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(config_str: &[String]) -> Result<Config, &str> {
-        if config_str.len() < 3 {
-            return Err("NOT ENOUGH ARUMENTS.");
-        }
+    pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
+        // if config_str.len() < 3 {
+        //     return Err("NOT ENOUGH ARUMENTS.");
+        // }
 
-        let word = config_str[1].clone();
-        let file_name = config_str[2].clone();
-        
+        // let word = config_str[1].clone();
+        // let file_name = config_str[2].clone();
+
+        // this is just the program path
+        args.next();
+
+        let word = match args.next() {
+            Some(x) =>x,
+            None => return Err("invalid argument for word") 
+        };        
+        let file_name = match args.next() {
+            Some(x) =>x,
+            None => return Err("invalid argument for file name") 
+        };
         let case_sensetive = env::var("CASE_INSENSETIVE").is_err();
         Ok(Config { word, file_name, case_sensetive })
     }
@@ -42,14 +53,10 @@ impl Config {
 
 
 pub fn search<'a>(doc: &'a str, word: &'a str)->Vec<&'a str>{
-    let mut result_lines= Vec::new();
+    // let mut result_lines= Vec::new();
 
-    for i in doc.lines(){
-        if i.contains(word){
-            result_lines.push(i);
-        }
-    }
-    result_lines
+    doc.lines().filter(|x| x.contains(word)).collect()
+
 
 }
 pub fn search_case_insensetive <'a>(doc: &'a str, word: &'a str)->Vec<&'a str>{

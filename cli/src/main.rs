@@ -4,9 +4,9 @@ use minigrep::Config;
 // mini grep
 
 fn main() {
-    let arguments: Vec<String> = args().collect();
+    // let arguments: Vec<String> = args().collect();
 
-    let config = Config::new(&arguments).unwrap_or_else(|err| {
+    let config = Config::new(args()).unwrap_or_else(|err| {
         eprintln!("failed to parse args: {:?}", err);
         process::exit(1);
     });
