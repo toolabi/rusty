@@ -15,4 +15,54 @@ use crate::List::{Cons, Nil};
 
 fn main() {
     let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+
+    {
+        use std::ops::Deref;
+        // smart pointers are struct that implement deref and drop trair
+        // deref 
+        #[derive(Debug)]
+        struct My_box<T>(T);
+        impl<T> My_box<T> {
+            fn new(x: T)-> My_box<T>{
+                My_box(x)
+            }
+            
+        }
+        impl<T: std::fmt::Debug> Deref for My_box<T> {
+            type Target = T;
+
+            fn deref(&self) -> &Self::Target {
+                println!("the data ({:?}) was derefed.", self.0);
+                &self.0
+            }
+            
+        }
+
+        let base = "x".to_string();
+        let data = My_box::new(base);
+        
+        assert_eq!("x".to_string(), *data);
+        // drop trait
+        struct Custom_pointer {
+            data: String
+        }
+
+        impl Drop for  Custom_pointer {
+
+            fn drop(&mut self) {
+                println!("the data ({:?}) was dropped.", self.data)
+            }
+            
+        }
+
+        let a = Custom_pointer{
+            data: "hi".to_string()
+        };
+
+
+    }
+
+    {
+        // reference couting and how it let us share ownership
+    }
 }
