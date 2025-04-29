@@ -6,15 +6,26 @@
 // when you own a value and you care that value implements a trait
 
 
+use crate::List::{Cons, Nil};
+use std::rc::Rc;
+
 enum List {
-    Cons(i32, Box<List>),
+    Cons(i32, Rc<List>),
     Nil,
 }
 
-use crate::List::{Cons, Nil};
-
 fn main() {
-    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+
+
+
+    {
+        // pointers are variables that hold a memory address that point to a data in memory
+        // basic pointer id refrence & 
+        // box allows you to allocate memory on the heap
+        // let a = Box::new(5);
+        // let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+
+    }
 
     {
         use std::ops::Deref;
@@ -64,5 +75,16 @@ fn main() {
 
     {
         // reference couting and how it let us share ownership
+        let a = Rc::new(Cons(1, Rc::new(Cons(2, Rc::new(Nil)))));
+        println!("{:?}", Rc::strong_count(&a));
+        let b = Cons(4, Rc::clone(&a));
+        println!("{:?}", Rc::strong_count(&a));
+        {
+            let c = Cons(5, Rc::clone(&a));
+            println!("{:?}", Rc::strong_count(&a));
+
+        }
+        println!("{:?}", Rc::strong_count(&a));
+
     }
 }
