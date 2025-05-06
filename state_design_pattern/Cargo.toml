@@ -1,0 +1,10 @@
+[package]
+name = "state_design_pattern"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ethers = "2.0.14"
+num-bigint = "0.4.6"
+num-traits = "0.2.19"
+tokio = { version = "1", features = ["full"] }
